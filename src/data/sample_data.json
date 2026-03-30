@@ -1,0 +1,16 @@
+{
+  "text": [
+    "I love this product",
+    "This is the worst thing ever",
+    "Absolutely amazing experience",
+    "I hate this",
+    "Not good at all",
+    "Really happy with the service",
+    "Terrible support",
+    "Very satisfied",
+    "Bad quality",
+    "Excellent performance",
+    "I hated the experience"
+  ],
+  "label": [1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0]
+}

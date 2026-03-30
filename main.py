@@ -1,4 +1,5 @@
 import pandas as pd
+import json
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, classification_report
 
@@ -6,23 +7,8 @@ from src.preprocess import preprocess
 from src.train import train_model
 from src.predict import predict
 
-# Sample dataset
-data = {
-    "text": [
-        "I love this product",
-        "This is the worst thing ever",
-        "Absolutely amazing experience",
-        "I hate this",
-        "Not good at all",
-        "Really happy with the service",
-        "Terrible support",
-        "Very satisfied",
-        "Bad quality",
-        "Excellent performance",
-        "I hated the experience"
-    ],
-    "label": [1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0]
-}
+with open("src/data/sample_data.json", "r") as f:
+    data = json.load(f)
 
 df = pd.DataFrame(data)
 
@@ -49,4 +35,4 @@ print("\nClassification Report:\n", classification_report(y_test, y_pred))
 
 # Custom test
 print("\nCustom Test:")
-print(predict("I really hated this!", model, vectorizer, preprocess))
+print(predict("I really loved this!", model, vectorizer, preprocess))
