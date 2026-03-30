@@ -7,7 +7,7 @@ from src.preprocess import preprocess
 from src.train import train_model
 from src.predict import predict
 
-with open("src/data/sample_data.json", "r") as f:
+with open("data/sample_data.json", "r") as f:
     data = json.load(f)
 
 df = pd.DataFrame(data)
@@ -17,7 +17,11 @@ df['cleaned_text'] = df['text'].apply(preprocess)
 
 # Train-test split
 X_train, X_test, y_train, y_test = train_test_split(
-    df['cleaned_text'], df['label'], test_size=0.2, random_state=42
+    df['cleaned_text'],
+    df['label'],
+    test_size=0.2,
+    random_state=42,
+    stratify=df['label']
 )
 
 # Train model
