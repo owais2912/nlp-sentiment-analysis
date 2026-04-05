@@ -10,7 +10,61 @@
     "Very satisfied",
     "Bad quality",
     "Excellent performance",
-    "I hated the experience"
+    "I hated the experience",
+
+    "This product exceeded my expectations",
+    "Worst purchase I have ever made",
+    "I am extremely happy with this",
+    "Not worth the money",
+    "The quality is amazing",
+    "Very disappointing experience",
+    "I would definitely recommend this",
+    "It broke after one use",
+    "Superb build quality",
+    "I regret buying this",
+
+    "Customer service was very helpful",
+    "The item arrived damaged",
+    "Really impressed with the performance",
+    "It does not work as expected",
+    "Fantastic product",
+    "Waste of money",
+    "Loved the design and usability",
+    "Very poor experience",
+    "Highly recommend this product",
+    "Not satisfied with the purchase",
+
+    "This is good",
+    "Very good product",
+    "I feel good about this",
+    "This was a great experience",
+    "Great quality and performance",
+    "Nice product overall",
+    "Really nice experience",
+    "Awesome product",
+    "I loved it",
+    "Pretty good overall",
+
+    "This is not good",
+    "Not a great product",
+    "Not happy with this",
+    "This was not a good experience",
+    "Poor quality product",
+    "Very bad experience",
+    "I did not like this",
+    "Extremely bad service",
+    "This is awful",
+    "Horrible experience"
   ],
-  "label": [1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0]
+  "label": [
+    1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0,
+
+    1, 0, 1, 0, 1, 0, 1, 0, 1, 0,
+
+    1, 0, 1, 0, 1, 0, 1, 0, 1, 0,
+
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+  ]
 }

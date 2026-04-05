@@ -1,21 +1,22 @@
 import pandas as pd
 import json
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score, classification_report
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 
 from src.preprocess import preprocess
 from src.train import train_model
 from src.predict import predict
 
+# Load data
 with open("data/sample_data.json", "r") as f:
     data = json.load(f)
 
 df = pd.DataFrame(data)
 
-# Preprocess text
+# Preprocess
 df['cleaned_text'] = df['text'].apply(preprocess)
 
-# Train-test split
+# Split
 X_train, X_test, y_train, y_test = train_test_split(
     df['cleaned_text'],
     df['label'],
@@ -24,19 +25,35 @@ X_train, X_test, y_train, y_test = train_test_split(
     stratify=df['label']
 )
 
-# Train model
-model, vectorizer = train_model(X_train, y_train)
+# ------------------------
+# Bag of Words Model
+# ------------------------
+model_bow, vec_bow = train_model(X_train, y_train, method="bow")
+y_pred_bow = model_bow.predict(vec_bow.transform(X_test))
 
-# Transform test data
-X_test_vec = vectorizer.transform(X_test)
+print("\n--- Bag of Words ---")
+print("Accuracy:", accuracy_score(y_test, y_pred_bow))
+print("Classification Report:\n", classification_report(y_test, y_pred_bow, zero_division=0))
+print("Confusion Matrix:\n", confusion_matrix(y_test, y_pred_bow))
 
-# Predictions
-y_pred = model.predict(X_test_vec)
 
-# Evaluation
-print("Accuracy:", accuracy_score(y_test, y_pred))
-print("\nClassification Report:\n", classification_report(y_test, y_pred))
+# ------------------------
+# TF-IDF Model
+# ------------------------
+model_tfidf, vec_tfidf = train_model(X_train, y_train, method="tfidf")
+y_pred_tfidf = model_tfidf.predict(vec_tfidf.transform(X_test))
 
-# Custom test
-print("\nCustom Test:")
-print(predict("I really loved this!", model, vectorizer, preprocess))
+print("\n--- TF-IDF ---")
+print("Accuracy:", accuracy_score(y_test, y_pred_tfidf))
+print("Classification Report:\n", classification_report(y_test, y_pred_tfidf, zero_division=0))
+print("Confusion Matrix:\n", confusion_matrix(y_test, y_pred_tfidf))
+
+
+# ------------------------
+# Custom Test (use better model)
+# ------------------------
+print("\nCustom Test (TF-IDF):")
+# print(predict("I really loved this!", model_tfidf, vec_tfidf, preprocess))
+print(predict("It was an amazing day!", model_tfidf, vec_tfidf, preprocess))
+print("\nCustom Test (BoW):")
+print(predict("It was an amazing day!", model_bow, vec_bow, preprocess))
